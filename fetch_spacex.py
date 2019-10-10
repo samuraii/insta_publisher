@@ -6,6 +6,7 @@ from helpers import download_image
 def get_launch_pictures(launch_name):
     url = f"https://api.spacexdata.com/v3/launches/{launch_name}"
     response = requests.get(url)
+    response.raise_for_status()
     return response.json()['links']['flickr_images']
 
 
