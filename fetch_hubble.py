@@ -6,6 +6,7 @@ from helpers import download_image, get_file_extension
 def get_hubble_pictures(pic_id):
     url = f"http://hubblesite.org/api/v3/image/{pic_id}"
     response = requests.get(url)
+    response.raise_for_status()
     links = []
     for file_data in response.json()['image_files']:
         file_url = "https://" + file_data['file_url'].replace("//imgsrc.hubblesite.org/hvi", "hubblesite.org")
